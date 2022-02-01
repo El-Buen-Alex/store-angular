@@ -10,6 +10,7 @@ import { MaterialModule } from './material.module';
 import {HttpClientModule} from '@angular/common/http';
 import { CartComponent } from './shared/components/cart/cart.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,7 @@ import { CartComponent } from './shared/components/cart/cart.component';
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
