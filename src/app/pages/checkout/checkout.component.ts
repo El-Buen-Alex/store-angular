@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { tap } from 'rxjs';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { switchMap, tap } from 'rxjs';
+import { Details, DetailsOrder } from 'src/app/shared/interface/DetailsOrder.interface';
+import { Order } from 'src/app/shared/interface/order.interface';
 import { Store } from 'src/app/shared/interface/store.interface';
 import { DataService } from 'src/app/shared/services/data.service';
+import { OrderService } from 'src/app/shared/services/order.service';
+import { shoppingCartService } from 'src/app/shared/services/shoppingcart.service';
+import { Product } from '../products/interface/product.interface';
 
 @Component({
   selector: 'app-checkout',
@@ -17,22 +24,56 @@ export class CheckoutComponent implements OnInit {
   }
   needDelivery:boolean=false
   tiendas:Store[]=[]
-  constructor(private dataSvc:DataService) { }
+  cart:Product[]=[]
+  constructor(private dataSvc:DataService, private orderSvc:OrderService, private shoppingCartSvc:shoppingCartService, private router:Router) { }
 
   ngOnInit(): void {
     this.getStores()
+    this.getDataCart()
+
   }
   onPickUp(value:boolean){
     this.needDelivery=value
   }
-  onSubmit(){
-    console.log("ey")
+  onSubmit({value: FormData}: NgForm){
+    console.log("mm")
+    
+    const data:Order={
+      ...FormData,
+      date: new Date().toLocaleDateString(),
+      pickup: !this.needDelivery
+    }
+    this.orderSvc.saveOrder(data).pipe(
+      tap(res=>console.log('order:',res)),
+      switchMap((order)=>{
+        const orderId=order.id
+        const details=this.getDetailsOrder();
+        return this.orderSvc.saveDetailsOrders({details, orderId})
+      }),
+      tap(()=>this.router.navigate(['/checkout/thanks-page'])),
+    ).subscribe()
+
   }
   getStores():void{
     this.dataSvc.getStores().pipe(
       tap((stores:Store[])=>{
        this.tiendas=stores
       })
+    ).subscribe()
+  }
+  private getDetailsOrder():Details[]{
+    const details:Details[]=[]
+    this.cart.forEach((product:Product)=>{
+      console.log(product)
+        const {id : idProduct, name:productName, quantity, stock}=product;
+        details.push({idProduct,productName ,quantity})
+    })
+    return details;
+  }
+  private getDataCart():void{
+   
+    this.shoppingCartSvc.cartActions$.pipe(
+      tap((products:Product[])=>this.cart=products)
     ).subscribe()
   }
 }

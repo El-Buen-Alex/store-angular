@@ -13,9 +13,9 @@ export class DataService {
     private apiUrl='http://localhost:3000';
 
     constructor(private http:HttpClient){
-
     }
     getStores():Observable<Store[]>{
         return this.http.get<Store[]>(`${this.apiUrl}/stores`)
     }
+    
 }
