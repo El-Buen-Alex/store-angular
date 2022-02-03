@@ -26,7 +26,9 @@ export class CheckoutComponent implements OnInit {
   needDelivery:boolean=false
   tiendas:Store[]=[]
   cart:Product[]=[]
-  constructor(private dataSvc:DataService, private orderSvc:OrderService, private shoppingCartSvc:shoppingCartService, private router:Router, private productSVC:ProductsService) { }
+  constructor(private dataSvc:DataService, private orderSvc:OrderService, private shoppingCartSvc:shoppingCartService, private router:Router, private productSVC:ProductsService) {
+    this.checkCartEmpty()
+   }
 
   ngOnInit(): void {
     this.getStores()
@@ -85,4 +87,14 @@ export class CheckoutComponent implements OnInit {
       tap((products:Product[])=>this.cart=products)
     ).subscribe()
   }
+  private checkCartEmpty():void{
+      this.shoppingCartSvc.cartActions$.pipe(
+        tap((products:Product[])=>{
+          if( Array.isArray(products) && !products.length){
+            this.router.navigate(['/products'])
+          }
+        })
+      ).subscribe();
+  }
 }
+

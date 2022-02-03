@@ -20,7 +20,6 @@ export class CartComponent{
     quantity$=this.shoppingCartSvc.quantityActions$
   total$=this.shoppingCartSvc.totalActions$
 
-  cart$=this.shoppingCartSvc.cartActions$
   constructor(private shoppingCartSvc: shoppingCartService) { }
 
 }
