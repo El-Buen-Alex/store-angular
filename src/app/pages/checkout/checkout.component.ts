@@ -9,6 +9,7 @@ import { DataService } from 'src/app/shared/services/data.service';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { shoppingCartService } from 'src/app/shared/services/shoppingcart.service';
 import { Product } from '../products/interface/product.interface';
+import { ProductsService } from '../products/services/products.service';
 
 @Component({
   selector: 'app-checkout',
@@ -25,7 +26,7 @@ export class CheckoutComponent implements OnInit {
   needDelivery:boolean=false
   tiendas:Store[]=[]
   cart:Product[]=[]
-  constructor(private dataSvc:DataService, private orderSvc:OrderService, private shoppingCartSvc:shoppingCartService, private router:Router) { }
+  constructor(private dataSvc:DataService, private orderSvc:OrderService, private shoppingCartSvc:shoppingCartService, private router:Router, private productSVC:ProductsService) { }
 
   ngOnInit(): void {
     this.getStores()
@@ -66,9 +67,15 @@ export class CheckoutComponent implements OnInit {
   private getDetailsOrder():Details[]{
     const details:Details[]=[]
     this.cart.forEach((product:Product)=>{
-      console.log(product)
+
+
         const {id : idProduct, name:productName, quantity, stock}=product;
-        details.push({idProduct,productName ,quantity})
+        const updateStcok=(stock-quantity)
+        this.productSVC.updateStock(idProduct, updateStcok).pipe(
+            tap(()=>{
+              details.push({idProduct,productName ,quantity})
+            })  
+        ).subscribe()
     })
     return details;
   }

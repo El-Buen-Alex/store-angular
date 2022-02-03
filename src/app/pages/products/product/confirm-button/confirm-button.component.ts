@@ -9,7 +9,7 @@ import { Product } from '../../interface/product.interface';
 })
 export class ConfirmButtonComponent implements OnInit {
   @Input()product!:Product
-  @Output()click=new EventEmitter();
+  @Output()clickToAdd=new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
@@ -17,8 +17,7 @@ export class ConfirmButtonComponent implements OnInit {
   }
 
   onClickButton():void{
-    console.log("ola")
-      this.click.emit()
+      this.clickToAdd.emit()
   }
 
 }

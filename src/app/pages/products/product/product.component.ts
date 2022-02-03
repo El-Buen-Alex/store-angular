@@ -15,6 +15,7 @@ export class ProductComponent  {
     @Output() addToCartClick=new EventEmitter<Product>();
     
     onClickToAdd():void{
+        
         this.addToCartClick.emit(this.product)
     }
 }

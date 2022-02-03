@@ -65,7 +65,7 @@
       "price": 5,
       "description": "En Hackeando del cerebro de tus compradores, Corti nos revela cómo muchas compañías crean productos digitales o procesos de venta capaces de conectar con la psicología del comprador.",
       "categoryId": 1,
-      "stock": 10
+      "stock": 8
     },
     {
       "id": 3,
@@ -314,6 +314,19 @@
       "date": "2/2/2022",
       "pickup": true,
       "id": 16
+    },
+    {
+      "name": "ola",
+      "store": {
+        "id": 3,
+        "name": "Chambers and West Broadway",
+        "address": "125 Chambers Street",
+        "city": "New York",
+        "openingHours": "10:00 - 14:00 and 17:00 - 20:30"
+      },
+      "date": "2/2/2022",
+      "pickup": true,
+      "id": 17
     }
   ],
   "detailsOrders": [
@@ -462,6 +475,11 @@
       ],
       "orderId": 16,
       "id": 32.49587816490723
+    },
+    {
+      "details": [],
+      "orderId": 17,
+      "id": 33.49587816490723
     }
   ]
 }
