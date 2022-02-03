@@ -8,8 +8,6 @@
        {{product.description}}
     </mat-card-content>
     <mat-card-actions>
-        <button mat-flat-button color="primary" (click)="onClick()">
-            <mat-icon>add_shopping_cart</mat-icon>Buy for {{product.price | currency}}
-        </button>
+        <app-confirm-button [product]="product" (click)="onClickToAdd()"></app-confirm-button>
     </mat-card-actions>
 </mat-card>

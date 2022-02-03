@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { switchMap, tap } from 'rxjs';
+import { delay, switchMap, tap } from 'rxjs';
 import { Details, DetailsOrder } from 'src/app/shared/interface/DetailsOrder.interface';
 import { Order } from 'src/app/shared/interface/order.interface';
 import { Store } from 'src/app/shared/interface/store.interface';
@@ -51,6 +51,8 @@ export class CheckoutComponent implements OnInit {
         return this.orderSvc.saveDetailsOrders({details, orderId})
       }),
       tap(()=>this.router.navigate(['/checkout/thanks-page'])),
+      delay(250),
+      tap(()=>this.shoppingCartSvc.resetCart())
     ).subscribe()
 
   }

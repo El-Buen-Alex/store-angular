@@ -1,0 +1,4 @@
+<button mat-flat-button color="primary" (click)="onClickButton()" [disabled]="product.stock===0">
+    <mat-icon *ngIf="product.stock>0">add_shopping_cart</mat-icon>Buy for {{product.price | currency}} 
+    <span *ngIf="product.stock===0"> - Sold Out</span>
+</button>

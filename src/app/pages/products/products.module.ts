@@ -5,11 +5,13 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
 import { MaterialModule } from 'src/app/material.module';
 import { ProductComponent } from './product/product.component';
+import { ConfirmButtonComponent } from './product/confirm-button/confirm-button.component';
 
 @NgModule({
   declarations: [
     ProductsComponent,
-    ProductComponent
+    ProductComponent,
+    ConfirmButtonComponent
   ],
   imports: [
     CommonModule,

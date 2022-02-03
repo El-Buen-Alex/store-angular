@@ -288,6 +288,32 @@
       "date": "2/2/2022",
       "pickup": true,
       "id": 14
+    },
+    {
+      "name": "ola",
+      "store": {
+        "id": 2,
+        "name": "Store Alcalá",
+        "address": "Calle de Alcalá, 21",
+        "city": "Madrid",
+        "openingHours": "10:00 - 14:00 and 17:00 - 20:30"
+      },
+      "date": "2/2/2022",
+      "pickup": true,
+      "id": 15
+    },
+    {
+      "name": "ola",
+      "store": {
+        "id": 5,
+        "name": "Monmouth St",
+        "address": "11 Monmouth Street",
+        "city": "London",
+        "openingHours": "10:00 - 14:00 and 17:00 - 20:30"
+      },
+      "date": "2/2/2022",
+      "pickup": true,
+      "id": 16
     }
   ],
   "detailsOrders": [
@@ -414,6 +440,28 @@
       ],
       "orderId": 14,
       "id": 30.495878164907232
+    },
+    {
+      "details": [
+        {
+          "idProduct": 1,
+          "productName": "Essential TypeScript 4: From Beginner to Pro",
+          "quantity": 3
+        }
+      ],
+      "orderId": 15,
+      "id": 31.495878164907232
+    },
+    {
+      "details": [
+        {
+          "idProduct": 1,
+          "productName": "Essential TypeScript 4: From Beginner to Pro",
+          "quantity": 3
+        }
+      ],
+      "orderId": 16,
+      "id": 32.49587816490723
     }
   ]
 }
